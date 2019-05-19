@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package com.boot.project.Shopping.Cart.Service;
+
+import com.boot.project.shopping.cart.Dto.ProductDto;
+
+/**
+ * @author M1046717
+ *
+ */
+public interface ShoppingCartService {
+	ProductDto getProductDetails(int productId);
+}

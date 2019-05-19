@@ -1,0 +1,62 @@
+package com.boot.project.Shopping.Cart.Service.impl;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.boot.project.Shopping.Cart.Dao.Impl.ShoppingCartDaoImpl;
+import com.boot.project.Shopping.Cart.Dto.CartDto;
+import com.boot.project.Shopping.Cart.Dto.ProductDto;
+import com.boot.project.Shopping.Cart.Entity.Cart;
+import com.boot.project.Shopping.Cart.Entity.Product;
+import com.boot.project.Shopping.Cart.Service.ShoppingCartService;
+
+@Service
+public class ShoppingCartServiceImpl implements ShoppingCartService {
+	private static final Logger log = LoggerFactory.getLogger(ShoppingCartServiceImpl.class);
+
+	@Autowired
+	ShoppingCartDaoImpl ShoppingCartDaoImpl;
+
+	@Override
+	public ProductDto getProductDetails(int productId) {
+		log.info("ShoppingCartServiceImpl getProductDetailsStarts");
+		ProductDto productDto = null;
+		Product product = new Product();
+		product = ShoppingCartDaoImpl.getProduct(productId);
+		productDto = createProductDto(product);
+		return productDto;
+	}
+
+	private ProductDto createProductDto(Product product) {
+		ProductDto productDto = new ProductDto();
+		productDto.setProductId(product.getProductId());
+		productDto.setProductName(product.getProductName());
+		productDto.setProductCategory(product.getProductCategory());
+		return productDto;
+	}
+
+	@Override
+	public CartDto getCartDetails(int cartNo) {
+		log.info("ShoppingCartServiceImpl getCartDetailsStarts");
+		Cart cart = null;
+		CartDto cartDto = null;
+		cart = ShoppingCartDaoImpl.getCart(cartNo);
+		cartDto = prepareCartDto(cart);
+		return cartDto;
+	}
+
+	private CartDto prepareCartDto(Cart cart) {
+		CartDto cartDto = new CartDto();
+		cartDto.setCartNo(cart.getCartNo());
+		cartDto.setProducts(products);
+		cartDto.setQuantity(cart.getQuantity());
+		cartDto.setTotal(cart.getTotal());
+		return cartDto;
+	}
+
+}

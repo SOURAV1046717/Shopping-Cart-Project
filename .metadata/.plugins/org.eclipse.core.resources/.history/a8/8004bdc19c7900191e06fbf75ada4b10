@@ -1,0 +1,28 @@
+package com.boot.project.Shopping.Cart.Controller;
+
+import java.util.List;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.boot.project.Shopping.Cart.Dto.CartDto;
+import com.boot.project.Shopping.Cart.Dto.CartResponse;
+import com.boot.project.Shopping.Cart.Dto.ProductDto;
+
+public interface ShoppingCartController {
+	@GetMapping(value = "/api/get/product/{productId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	ProductDto getProductInfo(@PathVariable("productId") int productId);
+
+	@DeleteMapping(value = "/api/delete/product", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8)
+	ResponseEntity<CartResponse> deleteProduct(@RequestBody List<Integer> productId);
+
+	@GetMapping(value = "/api/get/cart/{cartNo}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public CartDto getCartInfo(@PathVariable("cartNo") int cartNo);
+
+}

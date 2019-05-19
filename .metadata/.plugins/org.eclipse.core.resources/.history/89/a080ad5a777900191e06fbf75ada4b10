@@ -1,0 +1,8 @@
+package com.boot.project.Shopping.Cart.Dto;
+
+import lombok.Data;
+
+@Data
+public class CartDto {
+
+}

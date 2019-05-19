@@ -1,0 +1,12 @@
+package com.boot.project.Shopping.Cart.Dao;
+
+import com.boot.project.Shopping.Cart.Entity.Cart;
+import com.boot.project.Shopping.Cart.Entity.Product;
+
+public interface ShoppingCartDao {
+	Product getProduct(int productId);
+
+	Cart getCart(int cartNo);
+	
+	void  deleteproduct(List<Integer> productIds);
+}
